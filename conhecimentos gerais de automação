@@ -1,0 +1,48 @@
+Conhecimentos gerais de automação:
+1 – Faça uma breve descrição sobre sua experiencia com testes automatizados.
+Meu primeiro contato com testes automatizados foram testes E2E usando Selenium e CodeceptJS. Comecei criando scripts de automação cross-browser para fluxos repetitivos que eu precisava executar no site de um cliente. Por recomendação de colegas de trabalho, migrei para Nightwatch.js, uma solução para testes E2E integrada e fácil de usar para aplicativos da web e sites. Posteriormente obtive experiência automatizando casos de testes para sistemas desktop através do TestComplete.
+
+2 – Descreva o que é o padrão Page Object?
+É um padrão de design, popular em automação de testes por melhorar a manutenção dos testes e reduzir possíveis códigos duplicados. Esse padrão cria repositórios para organizar funções, métodos, objetos e elementos web.
+
+3 – O que são mocks, e quando devem ser utilizados?
+Mocks são objetos fícticios que simulam o comportamento de objetos reais e são usados em testes de uma aplicação em desenvolvimento, quando ainda não há dados reais, para testar o comportamento de outros objetos.
+
+4 – Cite 3 tipos de testes que podem ser automatizados em API e 3 para Front end.
+API: teste de contrato, teste funcional e teste de carga.
+FrontEnd: teste de regressão, teste funcional e teste de integração.
+
+5 – O que é BDD?
+O Behavior Driven Development (BDD) é um método de desenvolvimento que incentiva a comunicação entre as equipes. Essa abordagem colaborativa reúne os aspectos comerciais e técnicos dos projetos. Este método permite que as equipes se comuniquem melhor sobre os requisitos, detectem problemas com antecedência e mantenham o software com facilidade.
+
+6 – O que é Gherkin?
+Gherkin é uma linguagem que os desenvolvedores usam para definir testes no Cucumber. Uma vez que esta linguagem usa texto simples, ela se destina a descrever casos de uso para um software de forma que possa ser lida e compreendida por quase qualquer pessoa.
+
+7 – Em quais etapas do processo de desenvolvimento você acredita que o QA pode
+mais contribuir?
+O QA pode contribuir em todas as fases de desenvolvimento, do início ao fim do projeto. Sendo inserido nas reuniões de definição de requisitos, o QA pode ajudar a encontrar pontos de melhoria nas funcionalidades, antecipar possíveis problemas que podem vir a ocorrer no sistema e dar sugestões para um software funcional e que não comprometa a experiência do usuário. Durante a fase de construção do sistema, o QA pode contribuir encontrando falhas que o desenvolvedor deixou passar. Já na fase de entrega do software, o QA pode contribuir dando apoio aos clientes, removendo impedimentos, auxiliando em dúvidas e apresentando a melhor maneira de uso do software.
+
+8 – Cite 2 técnicas de testes de caixa preta. Explique como funciona cada uma delas.
+Partição de Equivalência: 
+Na Partição de Equivalência, as entradas do software ou sistema são divididas em grupos que tenham um
+comportamento similar, podendo ser tratados da mesma forma. Partições (ou classes) de equivalência podem
+ser encontradas em dados válidos e inválidos (por exemplo, valores que deveriam ser rejeitados). Partições
+podem também ser identificadas para valores de saídas, valores internos e valores relacionados a tempo, (antes
+e após um evento) e para parâmetros de interface (durante teste de integração). Testes podem ser elaborados
+para cobrir as partições. Partição de Equivalência é aplicável a todos os níveis de testes.
+A Partição de Equivalência pode ser usada para atingir a cobertura dos valores de entrada e saída. Pode ser
+aplicada em uma entrada manual, interface entrada de sistema ou como parâmetro de interface num teste de
+integração.
+
+Análise do Valor Limite:
+O comportamento nos limites de uma partição de equivalência é onde existe maior probabilidade de estar
+incorreto. Portanto, limites são áreas onde testes estão mais propensos a indicar defeitos. Os valores limites de
+uma partição são seu máximo e seu mínimo. Um valor limite para uma partição válida é um valor limite
+válido. O limite de partição inválida é um valor limite inválido. Testes podem ser projetados para cobrir tanto
+valores inválidos como válidos. Quando os casos de testes são projetados, um valor em cada limite é
+escolhido.
+Análise do valor limite pode ser aplicada em todos os níveis de teste. É relativamente fácil aplicá-la, sua
+capacidade de encontrar defeitos é alta e especificações detalhadas podem ser úteis em sua elaboração.
+Esta técnica é muitas vezes considerada uma extensão da partição de equivalência e pode ser aplicada para
+entradas manuais como, por exemplo, em escalas de tempo ou tabela de limites. Valores limites podem
+também ser usados para selecionar dados de testes.
