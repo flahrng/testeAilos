@@ -1,0 +1,94 @@
+{
+	"id": "a94dd154-dec5-45b7-8934-d987b9640ba5",
+	"values": [
+		{
+			"key": "nomeUsuario",
+			"value": "Ciclano Tal",
+			"enabled": true
+		},
+		{
+			"key": "emailUsuario",
+			"value": "cic_tal@cic.com",
+			"enabled": true
+		},
+		{
+			"key": "password",
+			"value": "cic123",
+			"enabled": true
+		},
+		{
+			"key": "administrador",
+			"value": "true",
+			"enabled": true
+		},
+		{
+			"key": "nomeUsuarioNovo",
+			"value": "Ciclano Tal Mattos",
+			"enabled": true
+		},
+		{
+			"key": "emailUsuarioNovo",
+			"value": "cic_tal_mattos@cic.com",
+			"enabled": true
+		},
+		{
+			"key": "passwordNovo",
+			"value": "cicmattos123",
+			"enabled": true
+		},
+		{
+			"key": "administradorNovo",
+			"value": "true",
+			"enabled": true
+		},
+		{
+			"key": "endpointCarrinhos",
+			"value": "https://serverest.dev/carrinhos",
+			"enabled": true
+		},
+		{
+			"key": "endpointUsuarios",
+			"value": "https://serverest.dev/usuarios",
+			"enabled": true
+		},
+		{
+			"key": "endpointProdutos",
+			"value": "https://serverest.dev/produtos",
+			"enabled": true
+		},
+		{
+			"key": "endpointLogin",
+			"value": "https://serverest.dev/login",
+			"enabled": true
+		},
+		{
+			"key": "user_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "nomeProduto",
+			"value": "Cadeira XRacer",
+			"enabled": true
+		},
+		{
+			"key": "precoProduto",
+			"value": "2000",
+			"enabled": true
+		},
+		{
+			"key": "descricaoProduto",
+			"value": "Confortavel",
+			"enabled": true
+		},
+		{
+			"key": "quantidadeProduto",
+			"value": "10",
+			"enabled": true
+		}
+	],
+	"name": "Team Workspace Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2021-02-03T19:53:01.166Z",
+	"_postman_exported_using": "Postman/8.0.3"
+}

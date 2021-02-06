@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "c47d0b94-d43d-4035-8ec9-40b435bba1c8",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Validar criação do usuário', function(){",
+							"    response = pm.response.json();",
+							"    ",
+							"    pm.response.to.have.status(201);",
+							"    pm.expect(response.message).to.equals(\"Cadastro realizado com sucesso\");",
+							"    pm.globals.set(\"idUsuario\", response._id);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"{{nomeUsuario}}\",\n    \"email\": \"{{emailUsuario}}\",\n    \"password\": \"{{password}}\",\n    \"administrador\": \"{{administrador}}\"\n}"
+				},
+				"url": {
+					"raw": "{{endpointUsuarios}}",
+					"host": [
+						"{{endpointUsuarios}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verificar dados do Usuário",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Validar dados do usuário criado', function(){\r",
+							"    response = pm.response.json();\r",
+							"    usuario = response.usuarios[0];\r",
+							"    \r",
+							"    pm.response.to.have.status(200);    \r",
+							"    pm.expect(usuario.nome).to.equals(pm.globals.get(\"nomeUsuario\"));\r",
+							"    pm.expect(usuario.email).to.equals(pm.globals.get(\"emailUsuario\"));\r",
+							"    pm.expect(usuario.password).to.equals(pm.globals.get(\"password\"));\r",
+							"    pm.expect(usuario.administrador).to.equals(pm.globals.get(\"administrador\"));\r",
+							"    pm.expect(usuario._id).to.equals(pm.globals.get(\"idUsuario\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"{{nomeUsuario}}\",\r\n    \"email\": \"{{emailUsuario}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"administrador\": \"{{administrador}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpointUsuarios}}?_id={{idUsuario}}",
+					"host": [
+						"{{endpointUsuarios}}"
+					],
+					"query": [
+						{
+							"key": "_id",
+							"value": "{{idUsuario}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Validar edição do usuário', function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"{{nomeUsuarioNovo}}\",\r\n    \"email\": \"{{emailUsuarioNovo}}\",\r\n    \"password\": \"{{passwordNovo}}\",\r\n    \"administrador\": \"{{administradorNovo}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpointUsuarios}}/{{idUsuario}}",
+					"host": [
+						"{{endpointUsuarios}}"
+					],
+					"path": [
+						"{{idUsuario}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Listar Usuários', function(){\r",
+							"    response = pm.response.json();\r",
+							"    \r",
+							"    pm.response.to.have.status(200);    \r",
+							"    pm.expect(response).to.haveOwnProperty(\"quantidade\");\r",
+							"    pm.expect(response).to.haveOwnProperty(\"usuarios\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpointUsuarios}}",
+					"host": [
+						"{{endpointUsuarios}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Produto",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url:  pm.globals.get(\"endpointLogin\"), \r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Accept': 'application/json',\r",
+							"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'urlencoded',\r",
+							"        urlencoded: [\r",
+							"            {key: \"email\", value: pm.globals.get(\"emailUsuarioNovo\")},\r",
+							"            {key: \"password\", value: pm.globals.get(\"passwordNovo\")}\r",
+							"        ]\r",
+							"    }\r",
+							"}, function (err, res) {    \r",
+							"    pm.globals.set(\"user_token\", res.json().authorization);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"expectedResponse = {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"        \"message\": {\r",
+							"            \"type\": \"string\"\r",
+							"        },\r",
+							"        \"_id\": {\r",
+							"            \"type\": \"string\"\r",
+							"        }\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test('Teste de contrato - Cadastrar Produto', function () {\r",
+							"    var validation = tv4.validate(responseJson, expectedResponse);\r",
+							"    pm.expect(validation).to.be.true;\r",
+							"    pm.globals.set(\"idProduto\", responseJson._id);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{user_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"{{nomeProduto}}\",\r\n  \"preco\": \"{{precoProduto}}\",\r\n  \"descricao\": \"{{descricaoProduto}}\",\r\n  \"quantidade\": \"{{quantidadeProduto}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpointProdutos}}",
+					"host": [
+						"{{endpointProdutos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Produtos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"expectedResponse = {\r",
+							"    \"type\": \"object\",\r",
+							"    \"properties\": {\r",
+							"        \"quantidade\": {\r",
+							"            \"type\": \"number\"\r",
+							"        },\r",
+							"        \"produtos\": {\r",
+							"            \"type\": \"array\",\r",
+							"            \"items\": {\r",
+							"                \"type\": \"object\",\r",
+							"                \"properties\": {\r",
+							"                    \"nome\": {\r",
+							"                        \"type\": \"string\"\r",
+							"                    },\r",
+							"                    \"preco\": {\r",
+							"                        \"type\": \"number\"\r",
+							"                    },\r",
+							"                    \"descricao\": {\r",
+							"                        \"type\": \"string\"\r",
+							"                    },\r",
+							"                    \"quantidade\": {\r",
+							"                        \"type\": \"number\"\r",
+							"                    },\r",
+							"                    \"_id\": {\r",
+							"                        \"type\": \"string\"\r",
+							"                    }\r",
+							"                }\r",
+							"            }\r",
+							"        }\r",
+							"    }\r",
+							"}\r",
+							"\r",
+							"responseJson = pm.response.json();\r",
+							"\r",
+							"pm.test('Teste de contrato - Listar Produtos', function () {\r",
+							"    var validation = tv4.validate(responseJson, expectedResponse);\r",
+							"    pm.expect(validation).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{endpointProdutos}}",
+					"host": [
+						"{{endpointProdutos}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Produto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Excluir Produto', function () {\r",
+							"    response = pm.response.json();\r",
+							"    mensagem = response.message;\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(mensagem).to.equals(\"Registro excluído com sucesso\");\r",
+							"    pm.globals.unset(\"idProduto\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url:  pm.globals.get(\"endpointLogin\"), \r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Accept': 'application/json',\r",
+							"        'Content-Type': 'application/x-www-form-urlencoded'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'urlencoded',\r",
+							"        urlencoded: [\r",
+							"            {key: \"email\", value: pm.globals.get(\"emailUsuarioNovo\")},\r",
+							"            {key: \"password\", value: pm.globals.get(\"passwordNovo\")}\r",
+							"        ]\r",
+							"    }\r",
+							"}, function (err, res) {    \r",
+							"    pm.globals.set(\"user_token\", res.json().authorization);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{user_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpointProdutos}}/{{idProduto}}",
+					"host": [
+						"{{endpointProdutos}}"
+					],
+					"path": [
+						"{{idProduto}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Validar exclusão do Usuário', function(){\r",
+							"    response = pm.response.json();\r",
+							"    mensagem = response.message;\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(mensagem).to.equals(\"Registro excluído com sucesso\");\r",
+							"    pm.globals.unset(\"idUsuario\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{endpointUsuarios}}/{{idUsuario}}",
+					"host": [
+						"{{endpointUsuarios}}"
+					],
+					"path": [
+						"{{idUsuario}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
